@@ -13,7 +13,6 @@ private:
     static int numarCamere;   // atribut static
 
 public:
-    // Constructor cu lista de ini?ializare
     Camera(int id, string m, int mp, float p, bool stab)
         : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab) {
         numarCamere++;
