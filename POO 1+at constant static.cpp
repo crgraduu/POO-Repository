@@ -14,9 +14,9 @@ private:
 
 public:
     Camera(int id, string m, int mp, float p, bool stab)
-        : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab) {
+        : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab) 
         numarCamere++;
-    }
+
 
     void afisare() {
         cout << "Camera #" << idCamera << " - " << marca << " cu " << megapixeli
@@ -36,9 +36,9 @@ private:
 
 public:
     Card(int id, string t, int cap, int viteza)
-        : idCard(id), tip(t), capacitateGB(cap), vitezaScriereMB(viteza) {
+        : idCard(id), tip(t), capacitateGB(cap), vitezaScriereMB(viteza) 
         numarCarduri++;
-    }
+    
 
     void afisare() {
         cout << "Card #" << idCard << " - " << tip << " de " << capacitateGB << "GB, "
@@ -57,9 +57,9 @@ private:
 
 public:
     Incarcator(int id, string tip, float v, bool fast)
-        : idIncarcator(id), tipConector(tip), voltaj(v), incarcareRapida(fast) {
+        : idIncarcator(id), tipConector(tip), voltaj(v), incarcareRapida(fast) 
         numarIncarcatoare++;
-    }
+    
 
     void afisare() {
         cout << "Incarcator #" << idIncarcator << " - conector " << tipConector
