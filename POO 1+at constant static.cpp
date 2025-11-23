@@ -32,7 +32,7 @@ private:
     string tip;
     int capacitateGB;
     int vitezaScriereMB;
-    static int numarCarduri;
+    static int numarCarduri;  // atribut static
 
 public:
     Card(int id, string t, int cap, int viteza)
@@ -53,7 +53,7 @@ private:
     string tipConector;
     float voltaj;
     bool incarcareRapida;
-    static int numarIncarcatoare;
+    static int numarIncarcatoare;  // atribut static
 
 public:
     Incarcator(int id, string tip, float v, bool fast)
