@@ -14,14 +14,17 @@ private:
 
 public:
     Camera(int id, string m, int mp, float p, bool stab)
-        : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab) 
+        : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab)
+    {
         numarCamere++;
+    }
 
-
-    void afisare() {
+    void afisare()
+    {
         cout << "Camera #" << idCamera << " - " << marca << " cu " << megapixeli
             << "MP, pret: " << pret << " lei, "
-            << (areStabilizare ? "cu" : "fara") << " stabilizare." << numarCamere << endl;
+            << (areStabilizare ? "cu " : "fara ")
+            << "stabilizare. Total camere: " << numarCamere << endl;
     }
 };
 
@@ -36,13 +39,16 @@ private:
 
 public:
     Card(int id, string t, int cap, int viteza)
-        : idCard(id), tip(t), capacitateGB(cap), vitezaScriereMB(viteza) 
+        : idCard(id), tip(t), capacitateGB(cap), vitezaScriereMB(viteza)
+    {
         numarCarduri++;
-    
+    }
 
-    void afisare() {
-        cout << "Card #" << idCard << " - " << tip << " de " << capacitateGB << "GB, "
-            << "viteza scriere: " << vitezaScriereMB << " MB/s." << numarCarduri <<endl;
+    void afisare()
+    {
+        cout << "Card #" << idCard << " - " << tip << " de " << capacitateGB
+            << "GB, viteza scriere: " << vitezaScriereMB
+            << " MB/s. Total carduri: " << numarCarduri << endl;
     }
 };
 
@@ -57,25 +63,30 @@ private:
 
 public:
     Incarcator(int id, string tip, float v, bool fast)
-        : idIncarcator(id), tipConector(tip), voltaj(v), incarcareRapida(fast) 
+        : idIncarcator(id), tipConector(tip), voltaj(v), incarcareRapida(fast)
+    {
         numarIncarcatoare++;
-    
+    }
 
-    void afisare() {
+
+    void afisare()
+    {
         cout << "Incarcator #" << idIncarcator << " - conector " << tipConector
             << ", " << voltaj << "V, "
-            << (incarcareRapida ? "cu incarcare rapida." : "fara incarcare rapida.") << numarIncarcatoare << endl;
+            << (incarcareRapida ? "cu " : "fara ")
+            << "incarcare rapida. Total incarcatoare: " << numarIncarcatoare << endl;
     }
 };
+int Camera::numarCamere = 0;
+int Card::numarCarduri = 0;
+int Incarcator::numarIncarcatoare = 0;
 
 int main() {
-    Camera c1(1, "Canon", 24, 2500.5f, true);
+    Camera c1(1, "Canon", 24, 2500.5, true);
     Card card1(2, "SDXC", 128, 90);
-    Incarcator inc1(3, "USB-C", 5.0f, true);
-
+    Incarcator inc1(3, "USB-C", 5.0, true);
     c1.afisare();
     card1.afisare();
     inc1.afisare();
-
     return 0;
 }
