@@ -68,7 +68,6 @@ public:
     }
 };
 
-// Program principal
 int main() {
     Camera c1(1, "Canon", 24, 2500.5f, true);
     Card card1(2, "SDXC", 128, 90);
