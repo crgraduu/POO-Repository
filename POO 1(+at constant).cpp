@@ -12,7 +12,6 @@ private:
     bool areStabilizare;
 
 public:
-    // Constructor cu lista de ini?ializare
     Camera(int id, string m, int mp, float p, bool stab)
         : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab) {
     }
@@ -63,7 +62,6 @@ public:
     }
 };
 
-// Program principal
 int main() {
     Camera c1(1, "Canon", 24, 2500.5f, true);
     Card card1(2, "SDXC", 128, 90);
