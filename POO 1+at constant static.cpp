@@ -82,10 +82,10 @@ int Card::numarCarduri = 0;
 int Incarcator::numarIncarcatoare = 0;
 
 int main() {
-    Camera c1(1, "Canon", 24, 2500.5, true);
+    Camera camera1(1, "Canon", 24, 2500.5, true);
     Card card1(2, "SDXC", 128, 90);
     Incarcator inc1(3, "USB-C", 5.0, true);
-    c1.afisare();
+    camera1.afisare();
     card1.afisare();
     inc1.afisare();
     return 0;
