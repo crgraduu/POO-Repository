@@ -2,23 +2,24 @@
 #include <string>
 using namespace std;
 
-// Clasa 1: Camera
 class Camera {
-private:
-    const int idCamera;       //  atribut constant
-    string marca;
+public:
+    const int idCamera;      // atribut constant
+    string* marca;           // pointer heap
     int megapixeli;
     float pret;
     bool areStabilizare;
-    static int numarCamere;   // atribut static
+    static int numarCamere;  // atribut static
 
-public:
-    Camera(int id, string m, int mp, float p, bool stab)
-        : idCamera(id), marca(m), megapixeli(mp), pret(p), areStabilizare(stab)
+    // Constructor 1: toate atributele
+    Camera(int id, const string& m, int mp, float p, bool stab)
+        : idCamera(id), megapixeli(mp), pret(p), areStabilizare(stab)
     {
+        marca = new string(m);
         numarCamere++;
     }
 
+    // Constructor 2: doar id si marca
     Camera(int id, const string& m)
         : idCamera(id), megapixeli(0), pret(0), areStabilizare(false)
     {
@@ -26,6 +27,7 @@ public:
         numarCamere++;
     }
 
+    // Constructor 3: fara parametri
     Camera()
         : idCamera(0), megapixeli(0), pret(0), areStabilizare(false)
     {
@@ -33,31 +35,37 @@ public:
         numarCamere++;
     }
 
-    void afisare() 
+    void afisare()
     {
-        cout << "Camera #" << idCamera << " - " << marca << " cu " << megapixeli
+        cout << "Camera #" << idCamera
+            << " - " << *marca
+            << " cu " << megapixeli
             << "MP, pret: " << pret << " lei, "
             << (areStabilizare ? "cu " : "fara ")
-            << "stabilizare. Total camere: " << numarCamere << endl;
+            << "stabilizare. Total camere: " << numarCamere
+            << endl;
     }
 };
 
-// Clasa 2: Card
+int Camera::numarCamere = 0;
+
 class Card {
-private:
-    const int idCard;         //  atribut constant
-    string tip;
+public:
+    const int idCard;       // atribut constant
+    string* tip;            // pointer heap
     int capacitateGB;
     int vitezaScriereMB;
-    static int numarCarduri;  // atribut static
+    static int numarCarduri; // atribut static
 
-public:
-    Card(int id, string t, int cap, int viteza)
-        : idCard(id), tip(t), capacitateGB(cap), vitezaScriereMB(viteza)
+    // Constructor 1
+    Card(int id, const string& t, int cap, int viteza)
+        : idCard(id), capacitateGB(cap), vitezaScriereMB(viteza)
     {
+        tip = new string(t);
         numarCarduri++;
     }
 
+    // Constructor 2
     Card(int id, const string& t)
         : idCard(id), capacitateGB(0), vitezaScriereMB(0)
     {
@@ -65,6 +73,7 @@ public:
         numarCarduri++;
     }
 
+    // Constructor 3
     Card()
         : idCard(0), capacitateGB(0), vitezaScriereMB(0)
     {
@@ -72,30 +81,36 @@ public:
         numarCarduri++;
     }
 
-    void afisare() 
+    void afisare()
     {
-        cout << "Card #" << idCard << " - " << tip << " de " << capacitateGB
+        cout << "Card #" << idCard
+            << " - " << *tip
+            << " de " << capacitateGB
             << "GB, viteza scriere: " << vitezaScriereMB
-            << " MB/s. Total carduri: " << numarCarduri << endl;
+            << " MB/s. Total carduri: " << numarCarduri
+            << endl;
     }
 };
 
-// Clasa 3: Incarcator
+int Card::numarCarduri = 0;
+
 class Incarcator {
-private:
-    const int idIncarcator;   //  atribut constant
-    string tipConector;
+public:
+    const int idIncarcator;  // atribut constant
+    string* tipConector;      // pointer heap
     float voltaj;
     bool incarcareRapida;
-    static int numarIncarcatoare;  // atribut static
+    static int numarIncarcatoare; // atribut static
 
-public:
-    Incarcator(int id, string tip, float v, bool fast)
-        : idIncarcator(id), tipConector(tip), voltaj(v), incarcareRapida(fast)
+    // Constructor 1
+    Incarcator(int id, const string& tip, float v, bool fast)
+        : idIncarcator(id), voltaj(v), incarcareRapida(fast)
     {
+        tipConector = new string(tip);
         numarIncarcatoare++;
     }
 
+    // Constructor 2
     Incarcator(int id, const string& tip)
         : idIncarcator(id), voltaj(0), incarcareRapida(false)
     {
@@ -103,6 +118,7 @@ public:
         numarIncarcatoare++;
     }
 
+    // Constructor 3
     Incarcator()
         : idIncarcator(0), voltaj(0), incarcareRapida(false)
     {
@@ -110,25 +126,44 @@ public:
         numarIncarcatoare++;
     }
 
-    void afisare() 
+    void afisare()
     {
-        cout << "Incarcator #" << idIncarcator << " - conector " << tipConector
+        cout << "Incarcator #" << idIncarcator
+            << " - conector " << *tipConector
             << ", " << voltaj << "V, "
             << (incarcareRapida ? "cu " : "fara ")
-            << "incarcare rapida. Total incarcatoare: " << numarIncarcatoare << endl;
+            << "incarcare rapida. Total incarcatoare: "
+            << numarIncarcatoare << endl;
     }
 };
-int Camera::numarCamere = 0;
-int Card::numarCarduri = 0;
+
 int Incarcator::numarIncarcatoare = 0;
 
 int main() {
-    Camera c1(1, "Canon", 24, 2500.5, true);
-    Card card1(2, "SDXC", 128, 90);
-    Incarcator inc1(3, "USB-C", 5.0, true);
-    cout << "???";
-    c1.afisare();
+    Camera camera1(1, "Canon", 24, 2500.5, true);
+    Camera camera2(2, "Nikon");
+    Camera camera3;
+
+    Card card1(1, "SDXC", 128, 90);
+    Card card2(2, "MicroSD");
+    Card card3;
+
+    Incarcator inc1(1, "USB-C", 5.0, true);
+    Incarcator inc2(2, "Lightning");
+    Incarcator inc3;
+
+    camera1.afisare();
+    camera2.afisare();
+    camera3.afisare();
+
     card1.afisare();
+    card2.afisare();
+    card3.afisare();
+
     inc1.afisare();
+    inc2.afisare();
+    inc3.afisare();
+
     return 0;
 }
+
